@@ -53,6 +53,19 @@
 
         The webservice has a single method 'SCAnalylzer/analyze'. The method takes an SoundCloud track ID, URL
         or URN and returns the associated Echo Nest track ID. A track analysis will be triggered if necessary.
+        <p>
+        The <a href="sample.html">sample app</a> provides a demonstration of how this surface might be used to
+        get track information for a SoundCloud track.
+
+        <h3> Methods: </h3>
+        <h4> SCAnalyzer/analyze</h4>
+         Returns the Echo Nest Track ID for the given Soundcloud track. If necessary, the analysis for the
+         track will be initiated.
+
+         <h5> Params </h5>
+         SCAnalyzer/analyze accepts the <b>id</b> parameter. This can be either a SoundCloud numeric, track
+         ID, a SoundCloud track URN or a SoundCloud track URL. See the examples section below for examples on
+         the different ID formats supported.
 
         <h3> Examples: </h3>
 
@@ -61,6 +74,7 @@
         <p>
         You can call with the track permalink:
         <br>
+        <b>Call:</b>
         <pre>
             <a href="http://labs.echonest.com/SCAnalyzer/analyze?id=tristan-garner-sevencore-1"> http://labs.echonest.com/SCAnalyzer/analyze?id=tristan-garner-sevencore-1 </a>
         </pre>
@@ -79,6 +93,7 @@
         <p>
         You can call with the track permalink url:
         <br>
+        <b>Call:</b>
         <pre>
             <a
             href="http://labs.echonest.com/SCAnalyzer/analyze?id=http://soundcloud.com/tristangarner/tristan-garner-sevencore-1">
@@ -104,6 +119,7 @@
         <p>
         You can call with the track uri:
         <br>
+        <b>Call:</b>
         <pre>
             <a
             href="http://labs.echonest.com/SCAnalyzer/analyze?id=http://api.soundcloud.com/tracks/116842607"> http://labs.echonest.com/SCAnalyzer/analyze?id=http://api.soundcloud.com/tracks/116842607 </a>
@@ -123,8 +139,9 @@
         <p>
         You can call with the track id:
         <br>
+        <b>Call:</b>
         <pre>
-            <a href="http://labs.echonest.com/SCAnalyzer/analyze?id=116842607"> http://labs.echonest.com/SCAnalyzer/analyze ?id=116842607 </a>
+            <a href="http://labs.echonest.com/SCAnalyzer/analyze?id=116842607"> http://labs.echonest.com/SCAnalyzer/analyze?id=116842607 </a>
         </pre>
 
         <b>Response:</b>

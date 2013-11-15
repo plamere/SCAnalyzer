@@ -17,6 +17,7 @@ class SCAnalyzer(object):
         self.calls = 0
         atexit.register(self.save)
         self.load()
+        self.dirty = False
         if not 'total_calls' in self.cache:
             self.cache['total_calls'] = 0
 
@@ -72,13 +73,16 @@ class SCAnalyzer(object):
         self.cache[js['permalink_url']] = trid
         self.cache[js['uri']] = trid
         self.cache[js['id']] = trid
+        self.dirty = True
 
     def save(self):
-        print "saving", len(self.cache), "items to sc.cache"
-        js = json.dumps(self.cache)
-        f = open("sc.cache", "w")
-        print >>f, js
-        f.close()
+        if self.dirty:
+            print "saving", len(self.cache), "items to sc.cache"
+            js = json.dumps(self.cache)
+            f = open("sc.cache", "w")
+            print >>f, js
+            self.dirty = False
+            f.close()
 
     def load(self):
         f = open("sc.cache", "r")
