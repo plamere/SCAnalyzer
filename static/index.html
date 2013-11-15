@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Music ED Hack NYC</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+
+    <style type="text/css">
+      body {
+        padding-top: 20px;
+        padding-bottom: 40px;
+      }
+
+      /* Custom container */
+      .container-narrow {
+        margin: 0 auto;
+        max-width: 700px;
+      }
+      .container-narrow > hr {
+        margin: 30px 0;
+      }
+
+      /* Main marketing message and sign up button */
+      .jumbotron {
+        margin: 60px 0;
+        text-align: center;
+      }
+      .jumbotron h1 {
+        font-size: 48px;
+        line-height: 1;
+      }
+      .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+      }
+
+      /* Supporting marketing content */
+      .marketing {
+        margin: 60px 0;
+      }
+      .marketing p + h4 {
+        margin-top: 28px;
+      }
+    </style>
+    </head>
+    <body>
+        <div class="container">
+        <h2> SoundCloud + The Echo Nest Web Service </h2>
+
+        This is a protoype web service that will allow a developer to easily create apps that combine
+        SoundCloud and The Echo Nest techologies.
+
+        The webservice has a single method 'SCAnalylzer/analyze'. The method takes an SoundCloud track ID, URL
+        or URN and returns the associated Echo Nest track ID. A track analysis will be triggered if necessary.
+
+        <h3> Examples: </h3>
+
+        <div class="container well">
+        <b>Track Permalink:</b>
+        <p>
+        You can call with the track permalink:
+        <br>
+        <pre>
+            <a href="http://labs.echonest.com/SCAnalyzer/analyze?id=tristan-garner-sevencore-1"> http://labs.echonest.com/SCAnalyzer/analyze?id=tristan-garner-sevencore-1 </a>
+        </pre>
+
+        <b>Response:</b>
+        <pre>
+            { 
+                "status": "OK", 
+                "trid": "TRYTXUG141F2431416" 
+            }
+        </pre>
+        </div>
+
+        <div class="container well">
+        <b>Track Permalink URL:</b>
+        <p>
+        You can call with the track permalink url:
+        <br>
+        <pre>
+            <a
+            href="http://labs.echonest.com/SCAnalyzer/analyze?id=http://soundcloud.com/tristangarner/tristan-garner-sevencore-1">
+            http://labs.echonest.com/SCAnalyzer/analyze?id=http://soundcloud.com/tristangarner/tristan-garner-sevencore-1 </a>
+
+            or 
+
+            <a
+            href="http://labs.echonest.com/SCAnalyzer/analyze?id=https://soundcloud.com/tristangarner/tristan-garner-sevencore-1"> http://labs.echonest.com/SCAnalyzer/analyze?id=https://soundcloud.com/tristangarner/tristan-garner-sevencore-1 </a>
+        </pre>
+
+        <b>Response:</b>
+        <pre>
+            { 
+                "status": "OK", 
+                "trid": "TRYTXUG141F2431416" 
+            }
+        </pre>
+        </div>
+
+        <div class="container well">
+        <b>Track URI:</b>
+        <p>
+        You can call with the track uri:
+        <br>
+        <pre>
+            <a
+            href="http://labs.echonest.com/SCAnalyzer/analyze?id=http://api.soundcloud.com/tracks/116842607"> http://labs.echonest.com/SCAnalyzer/analyze?id=http://api.soundcloud.com/tracks/116842607 </a>
+        </pre>
+
+        <b>Response:</b>
+        <pre>
+            { 
+                "status": "OK", 
+                "trid": "TRYTXUG141F2431416" 
+            }
+        </pre>
+        </div>
+
+        <div class="container well">
+        <b>Track ID:</b>
+        <p>
+        You can call with the track id:
+        <br>
+        <pre>
+            <a href="http://labs.echonest.com/SCAnalyzer/analyze?id=116842607"> http://labs.echonest.com/SCAnalyzer/analyze ?id=116842607 </a>
+        </pre>
+
+        <b>Response:</b>
+        <pre>
+            { 
+                "status": "OK", 
+                "trid": "TRYTXUG141F2431416" 
+            }
+        </pre>
+        </div>
+
+     <div class="container">
+     <h2> Using the Echo Nest Track ID </h2>
+      Once you have the Echo Nest Track ID, you can make a track/profile call:
+      <pre>
+        http://developer.echonest.com/api/v4/track/profile?api_key=YOUR_EN_API_KEY&format=json
+            &id=TRYTXUG141F2431416&bucket=audio_summary
+      </pre>
+
+      To get detailed information about the track. Here's an example. Included in the output is
+      an analysis_url that includes a very detailed map of the track data.
+
+      <pre>
+
+    {
+        "response": {
+            "status": {
+                "code": 0,
+                "message": "Success",
+                "version": "4.2"
+            },
+            "track": {
+                "analyzer_version": "3.2.2",
+                "audio_md5": "cf14c8dd478402f5db6be3738a4f6bf5",
+                "audio_summary": {
+                    "acousticness": 0.002417704725677794,
+                    "analysis_url": "http://echonest-analysis.s3.amazonaws.com/TR/TRYTXUG141F2431416/3/full.json?AWSAccessKeyId=AKIAJRDFEY23UEVW42BQ&Expires=1384503569&Signature=zvQxIGk0iCEA6NhL5Qt9ILUAmyk%3D",
+                    "danceability": 0.687974564494898,
+                    "duration": 305.03184,
+                    "energy": 0.9512201723791609,
+                    "key": 0,
+                    "liveness": 0.0512866228473507,
+                    "loudness": -5.157,
+                    "mode": 1,
+                    "speechiness": 0.05808062848956691,
+                    "tempo": 127.999,
+                    "time_signature": 4,
+                    "valence": 0.41278970394844006
+                },
+                "bitrate": 128,
+                "id": "TRYTXUG141F2431416",
+                "md5": "cf14c8dd478402f5db6be3738a4f6bf5",
+                "samplerate": 44100,
+                "status": "complete"
+            }
+        }
+    }
+
+      </pre>
+
+    </div>
+        
+    </div>
+    </body>
+</html>

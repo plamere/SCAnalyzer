@@ -1,0 +1,14 @@
+SC Credentials
+
+Client ID - 72f69b27f62dd38d1fa075a898e5d9a1
+Secret  - 3de5bd2c44ac3284ac3d8803ba93a636
+
+
+$ curl "http://api.soundcloud.com/tracks/13158665.json?client_id=72f69b27f62dd38d1fa075a898e5d9a1"
+
+'soundcloud:track:13158665'
+
+Use resolve to go from readable URLs to track ids
+
+
+

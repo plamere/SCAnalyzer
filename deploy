@@ -1,0 +1,1 @@
+rsync -av --exclude '.*' --exclude archive --exclude .git --exclude sc.cache --exclude error.log --exclude '*.pyc' .  root@labs.echonest.com:tests/soundcloud
