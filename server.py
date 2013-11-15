@@ -14,8 +14,11 @@ class SCAnalyzer(object):
         self.sc_client_id = "72f69b27f62dd38d1fa075a898e5d9a1"
         self.en = pyen.Pyen()
         self.cache = {}
+        self.calls = 0
         atexit.register(self.save)
         self.load()
+        if not 'total_calls' in self.cache:
+            self.cache['total_calls'] = 0
 
     def analyze(self, id, callback=None, _=''):
         if callback:
@@ -23,6 +26,7 @@ class SCAnalyzer(object):
         else:
             cherrypy.response.headers['Content-Type']= 'application/json'
         print id
+        self.cache['total_calls'] += 1
         if id in self.cache:
             result = { 'status' : 'OK',  'trid': self.cache[id]}
         else:
@@ -44,6 +48,16 @@ class SCAnalyzer(object):
                 result = { 'status' : 'ERROR',  'message': 'no audio'}
         return webtools.to_json(result, callback)
     analyze.exposed=True
+
+    def stats(self, callback=None, _=''):
+        if callback:
+            cherrypy.response.headers['Content-Type']= 'text/javascript'
+        else:
+            cherrypy.response.headers['Content-Type']= 'application/json'
+        self.cache['total_calls'] += 1
+        results = { "status" : "OK", "calls" : self.cache['total_calls'], "ids": len(self.cache) }
+        return webtools.to_json(results, callback)
+    stats.exposed=True
 
     def resolve(self, url):
         url = 'http://api.soundcloud.com/resolve.json?url=%s&client_id=%s' % (url, self.sc_client_id)
