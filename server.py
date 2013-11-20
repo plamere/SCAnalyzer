@@ -22,6 +22,7 @@ class SCAnalyzer(object):
             self.cache['total_calls'] = 0
 
     def analyze(self, id, callback=None, _=''):
+        cherrypy.response.headers["Access-Control-Allow-Origin"] = "*"
         if callback:
             cherrypy.response.headers['Content-Type']= 'text/javascript'
         else:
@@ -51,6 +52,7 @@ class SCAnalyzer(object):
     analyze.exposed=True
 
     def stats(self, callback=None, _=''):
+        cherrypy.response.headers["Access-Control-Allow-Origin"] = "*"
         if callback:
             cherrypy.response.headers['Content-Type']= 'text/javascript'
         else:
